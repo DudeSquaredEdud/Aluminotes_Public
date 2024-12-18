@@ -1,0 +1,47 @@
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="us-en">
+    <head>
+        <style>@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');</style>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Aluminotes" />
+        <meta name="keywords" content="HTML, CSS, JavaScript" />
+        <meta name="author" content="John Doe" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon"
+              type="image/png"
+              href="{% static 'img/favicon.ico' %}" />
+        <title>Aluminotes</title>
+        {# Load CSS and JavaScript #}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {# Display django.contrib.messages as Bootstrap alerts #}
+        {% bootstrap_messages %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+        <link href="{% static 'fontawesomefree/css/all.min.css' %}"
+              rel="stylesheet"
+              type="text/css" />
+        {% block style %}
+        {% endblock style %}
+    </head>
+    {% if user.is_authenticated %}
+        <body class="{{ user.custom_user_settings.theme }}">
+        {% else %}
+            <body class="galactic_blood">
+            {% endif %}
+            {% include "navbar.html" %}
+            <div class="container">
+                <h1 class="text-center fw-bold mb-5">
+                    {% block title %}
+                    {% endblock title %}
+                </h1>
+                <div>
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+            <!--{% include "footer.html" %}-->
+        </body>
+    </html>

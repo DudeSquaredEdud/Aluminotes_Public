@@ -1,0 +1,317 @@
+
+.theme-selection label {
+    margin-bottom: 4%;
+    margin-left: .5% !important;
+}
+
+.theme-selection .theme-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.profile-button {
+    width: 200px;
+}
+
+.template-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 25px;
+}
+
+.template-list ol {
+    list-style-type: none;
+}
+
+.template-list ol a {
+    text-decoration: none;
+    color: white;
+    padding:5px 10px;
+    width: 100%;
+    display: block;
+    margin: 8px;
+    border-radius: 5px;
+}
+
+.template-list-button {
+    display: inline-block;
+    background-color: #c42289;
+    color:antiquewhite;
+}
+
+.template-list-button:hover {
+    background-color: #e151ad;
+    transition-duration: 0.03s;
+}
+
+.template-detail {
+    border-radius: 1rem;
+    margin-top: -5%;
+    height: 90%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #85175d;
+    color:white;
+}
+
+.template-detail-buttons {
+    margin-bottom: -15%;
+}
+
+.template-detail .btn-outline-light {
+    width: 250px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.template-detail .btn-outline-light:hover {
+    background-color: #9d457d;
+    color: white;
+    transition-duration: 0.03s;
+}
+
+.gradient-custom {
+    border-radius: 1rem;
+    margin-top: -10%;
+    height: 500px;
+    background-color: #85175d;
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
+    color:white;
+}
+
+.login-style {
+    margin-top: -10%;
+}
+
+.forgot-style {
+    text-align: left;
+}
+
+.login-text {
+    color: lightgray;
+}
+
+.alert-style {
+    position: fixed;
+    top: 15%;
+    text-align: center;
+    width: 26.5%;
+}
+
+.alert {
+    width: 498px !important;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.signup-custom {
+    border-radius: 1rem;
+    margin-top: -5%;
+    /* height: 700px; */
+    background-color: #85175d;
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
+    color:white;
+}
+
+.signup-style {
+    margin-top: -20%;
+}
+
+.password-help {
+    text-align: left;
+    color: white;
+}
+
+.password-help li {
+    margin-left: 3%;
+}
+
+.account-details {
+    margin-left: 25% !important;
+}
+
+.reset-password-custom {
+    border-radius: 1rem;
+    margin-top: -5%;
+    height: 600px;
+    width: 500px;
+    background-color: #85175d;
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
+    color:white;
+}
+
+.reset-password-custom li{
+    text-align: left;
+    margin-left: -7%;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.back-button i {
+    margin-right: 10px;
+}
+
+.modal-dialog {
+    color: black;
+}
+
+
+.form-text {
+    color: aliceblue !important;
+}
+
+
+.create-update-custom .reset-password-custom{
+    height: 85%;
+}
+
+.templates-detail .checkbox {
+    padding-top: 10px;
+}
+
+.templates-detail .form-check-label {
+    margin-left: 2%;
+}
+
+.templates-detail .form-switch {
+    margin-left: 28%;
+}
+
+.templates-detail .custom-label {
+    opacity: 1 !important;
+}
+
+.templates-detail .switch-margin {
+    margin-left: 33% !important;
+    font-size: 18px !important;
+}
+
+.form-switch .form-check-input {
+    height: 16px;
+    width: 34px;
+}
+
+.form-switch .form-check-input:focus {
+    opacity: 1;
+    outline: 0;
+    border: none;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='lightgrey'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+    opacity: 1;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
+    background-color: #dc8bad;
+    border-color: #c02e6b;
+}
+
+.templates-detail-title {
+    margin-bottom: 1%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.templates-title {
+    margin-top: -5% !important;
+}
+
+.templates-create-title {
+    margin-bottom: 1%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.template-back-button {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 588px;
+}
+
+.template-detail-back-button {
+    margin-top: 10% !important;
+    margin-left:auto;
+    margin-right:auto;
+    width: 100%;
+    .back-button{
+        max-width: 600px;
+    }
+}
+
+.template-list-back-button {
+    position: relative;
+    top: -60px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+}
+
+.template-switch-align {
+    margin-left: 35% !important;
+    font-size: 18px !important;
+}
+
+.options-form .form-switch .form-check-input {
+    height: 18px;
+    width: 34px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28192, 46, 107, .30%29'/%3e%3c/svg%3e");
+}
+.options-form .form-switch .form-check-input:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    border: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28192, 46, 107, .30%29'/%3e%3c/svg%3e");
+
+}
+.options-form .form-switch .form-check-input:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
+    background-color: #d5749d;
+    border-color: #c02e6b;
+    border: none;
+}
+
+@media only screen and (max-width: 660px) {
+    .reset-password-custom{
+        width: 77vw;
+        height: fit-content;
+    }
+    .btn.btn-outline-light.btn-lg.px-5{
+        margin-bottom:10px;
+    }
+    .template-switch-align{
+        margin-left: unset !important;
+    }
+    .template-back-button.row.justify-content-center{
+        width:unset;
+    }
+
+}
+
+.delete_template_container{
+    height: unset;
+    .card-body{
+        .mt-md-4{
+            text-align-last: center;
+        }
+
+    }
+
+}

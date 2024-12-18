@@ -1,0 +1,68 @@
+{% extends "settings_crud_style.html" %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% load socialaccount %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert_box alert_box_error alert_box_start_opaque"
+                     id="alert_box">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert_box alert_box_error alert_box_start_opaque"
+                 id="alert_box">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <section class="vh-90">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card signup-custom text-white">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <h2 class="fw-bold mb-4 text-uppercase">Sign Up</h2>
+                                <form method="post" action="{% url 'signup' %}">
+                                    {% csrf_token %}
+                                    <div data-mdb-input-init class="form-outline form-white mb-4">{{ form.first_name }}</div>
+                                    <div data-mdb-input-init class="form-outline form-white mb-4">{{ form.last_name }}</div>
+                                    <div data-mdb-input-init class="form-outline form-white mb-4">{{ form.email }}</div>
+                                    <div data-mdb-input-init class="form-outline form-white mb-2">{{ form.password1 }}</div>
+                                    <small id="passwordHelp" class="password-help form-text">
+                                        <li>Your password can’t be too similar to your other personal information.</li>
+                                        <li>Your password must contain at least 8 characters.</li>
+                                        <li>Your password can’t be a commonly used password.</li>
+                                        <li>Your password can’t be entirely numeric.</li>
+                                    </small>
+                                    <div data-mdb-input-init class="form-outline form-white mt-2 mb-4">{{ form.password2 }}</div>
+                                    <div class="text-center">
+                                        <button data-mdb-button-init
+                                                data-mdb-ripple-init
+                                                class="btn btn-outline-light btn-lg px-5"
+                                                type="submit">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <p class="signup-style">
+                                    Already have an account? <a href="{% url 'login' %}" class="login-text fw-bold">Log In</a>
+                                </p>
+                                <a href="{% provider_login_url 'google' %}?next=/"
+                                   class="btn btn-outline-light btn-lg px-5">Sign Up with Google</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ERRORS & ALERT -->
+    <script type="text/javascript" src="{% static '/js/alert_box.js' %}"></script>
+{% endblock content %}

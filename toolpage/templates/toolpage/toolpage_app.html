@@ -1,0 +1,343 @@
+{% extends "toolpage/toolpage_style.html" %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet"
+        href="{% static 'css/toolpage.css' %}?{{ user.custom_user_settings.theme }}" />
+{% endblock style %}
+{% block body_start %}
+  <body class="apptheme"></body>
+{% endblock body_start %}
+{% block overcontent %}
+  <!--page layout-->
+  <!--The option box-->
+  <div class="toolpage_main">
+    <div class="option_container bloodbackground option_box"
+         id="fullpage_options_box">
+      <form id="myForm" action="." method="post">
+        {% csrf_token %}
+        {{ toolpage_template_form }}
+        <div>
+          <input type="hidden" id="form-data" name="form_data">
+        </div>
+      </form>
+    </div>
+    <!--The textboxes-->
+    <!--Input-->
+    <div class="text_container input_text_box fullscreen">
+      <div>
+        <textarea class="bloodbackground input_text_box no_outline_textarea {{ user.custom_user_settings.theme }}_text"
+                  placeholder="write here"
+                  id="input_text"
+                  name="input_text"></textarea>
+      </div>
+    </div>
+    <!-- If page shrinks, use below instead -->
+    {% comment %}
+     NOTE:
+      Remember to make a different verison of this for free users.
+    {% endcomment %}
+    {% if user.userprofile.user_type == 1 %}
+      <div class="tabbed_options" id="tablet_options_box">
+        <div class="tabbed_options_tabs">
+          <div class="tab bloodbackground"
+               id="tabbed_options_tabs_options"
+               onclick="options_tabswitch.activate('tabbed_options_tabs_options')">Options</div>
+          <div class="tab bloodbackground"
+               id="tabbed_options_tabs_templates"
+               onclick="options_tabswitch.activate('tabbed_options_tabs_templates')">Templates</div>
+        </div>
+        <div class="option_container bloodbackground option_box"
+             id="tabbed_options_tabs_options_contents">
+          <form id="myForm" action="." method="post" name="options_form">
+            {% csrf_token %}
+            {{ toolpage_template_form }}
+            <div>
+              <input type="hidden" id="form-data" name="form_data">
+            </div>
+          </form>
+        </div>
+        <div class="bloodbackground settings_box text_container"
+             id="tabbed_options_tabs_templates_contents">
+          {% if user.userprofile.user_type == 1 %}
+            <form id="savedForm" action="." method="post">
+              {{ saved_user_template_loader | safe }}
+              <input type="hidden" id="form-data" name="form_data">
+              <div class="templates-button-container">
+                <a id="template-button"
+                   class="edit-templates"
+                   href="{% url 'SavedUserTemplates:list-templates' %}">Templates</a>
+              </div>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+      <div class="option_container bloodbackground option_box"
+           id="tablet_options_box">
+        <form id="myForm" action="." method="post" name="tablet_options_form">
+          {% csrf_token %}
+          {{ toolpage_template_form }}
+          <div>
+            <input type="hidden" id="form-data" name="form_data">
+          </div>
+        </form>
+        <a style="color:aliceblue"
+           class="aluminotes_premium_advertisement"
+           href="{% url 'pricing' %}">
+          <div>
+            <p>get more</p>
+            <p style="color:#ffe558;">done</p>
+          </div>
+          <img src="{% static 'img/aluminotes_premium.png' %}"
+               alt="A golden aluminotes logo"
+               height="150px"
+               width="auto"
+               class="">
+          <div style="text-align: right;">
+            <p>with</p>
+            <p style="color:#ffe558;">aluminotes premium</p>
+          </div>
+        </a>
+      </div>
+    {% endif %}
+    <div class="tabbed_textboxes" id="tabbed_textboxes">
+      <div class="tabbed_textboxes_tabs">
+        <div class="tab bloodbackground"
+             id="tabbed_textboxes_tabs_input"
+             onclick="textbox_tabswitch.activate('tabbed_textboxes_tabs_input')">Notepad</div>
+        <div class="tab bloodbackground"
+             id="tabbed_textboxes_tabs_output"
+             onclick="textbox_tabswitch.activate('tabbed_textboxes_tabs_output')">Output</div>
+      </div>
+      <div class="text_container input_text_box"
+           id="tabbed_textboxes_tabs_input_contents">
+        <textarea class="bloodbackground input_text_box no_outline_textarea {{ user.custom_user_settings.theme }}_text"
+                  placeholder="write here"
+                  id="input_text"
+                  name="input_text"></textarea>
+      </div>
+      <div class="output_text_box text_container"
+           id="tabbed_textboxes_tabs_output_contents">
+        <p class="bloodbackground output_text_box"
+           id="output_text"
+           name="output_text"></p>
+      </div>
+    </div>
+    <!-- If page shrinks, use above instead -->
+    <div class="middle-buttons">
+      {% if user.userprofile.user_type == 1 %}
+        <a id="upload" class="upload-download">
+          <i class="fas fa-upload button-icons delta"></i></a>
+        <a id="download" class="upload-download">
+          <i class="fas fa-download button-icons delta"></i></a>
+      {% endif %}
+      <a id="options_icon" class="media-button">
+        <i class="fas fa-gear button-icons delta"></i></a>
+      <div class="media-controls">
+        <div class="media-buttons">
+          <button class="play-button media-button" label="play">
+            <i class="fas fa-play button-icons delta"></i>
+            <span class="button-text milli"></span>
+          </button>
+          <!-- Add other media buttons as needed -->
+        </div>
+        <audio id="audio_player">
+          <source id="audio_source" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <button type="submit"
+              value="Submit"
+              class="fa-sharp fa-solid fa-arrows-rotate generate-button"
+              id="gen_button"></button>
+      <button type="transcribe"
+              value="transcribe"
+              id="transcribe"
+              class="fa-sharp fa-solid fa-microphone generate-button"></button>
+      <div id="filenameModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Save Note</h2>
+          <p>Enter File Name:</p>
+          <input type="text" id="filenameInput">
+          <button id="saveFilename">Save</button>
+        </div>
+      </div>
+    </div>
+    <!--Output-->
+    <div class="output_text_box text_container fullscreen">
+      <p class="bloodbackground output_text_box"
+         id="output_text"
+         name="output_text"></p>
+    </div>
+    <!-- Saved User Settings -->
+    <div class="bloodbackground settings_box text_container"
+         id="fullpage_settings_box">
+      {% if user.userprofile.user_type == 1 %}
+        <div>
+          <form id="savedForm" action="." method="post">
+            {{ saved_user_template_loader | safe }}
+            <input type="hidden" id="form-data" name="form_data">
+            <div class="templates-button-container">
+              <a id="template-button"
+                 class="edit-templates"
+                 href="{% url 'SavedUserTemplates:list-templates' %}">Templates</a>
+            </div>
+          </form>
+        </div>
+      {% else %}
+        <a style="color:aliceblue"
+           class="aluminotes_premium_advertisement"
+           href="{% url 'pricing' %}">
+          <div>
+            <p>get more</p>
+            <p style="color:#ffe558;">done</p>
+          </div>
+          <img src="{% static 'img/aluminotes_premium.png' %}"
+               alt="A golden aluminotes logo"
+               height="150px"
+               width="auto"
+               class="">
+          <div style="text-align: right;">
+            <p>with</p>
+            <p style="color:#ffe558;">aluminotes premium</p>
+          </div>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="alert_box alert_box_error" id="alert_box"></div>
+  <!--javascript-->
+  <!-- ERRORS & ALERT -->
+  <script type="text/javascript" src="{% static '/js/alert_box.js' %}"></script>
+  <!--Rotate Generate Button on Click-->
+  <script type="text/javascript" src="{% static '/js/rotate_on_click.js' %}"></script>
+  <!--Submit without reload-->
+  <script type="text/javascript"
+          src="{% static '/js/submit_without_reload.js' %}"></script>
+  <!--Importing Gemini API-->
+  <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+  </script>
+  <!--Importing Markdown Converter-->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!--Gemini Generator-->
+  <script type="text/javascript" src="{% static '/js/gemini_generation.js' %}"></script>
+  <!-- JavaScript for text-to-speech -->
+  <script type="text/javascript" src="{% static '/js/text_to_speech.js' %}"></script>
+  <!-- Tabs -->
+  <script type="text/javascript" src="{% static '/js/tab_switch.js' %}"></script>
+  <script>
+  const textbox_tabswitch = new TabSwitch(["tabbed_textboxes_tabs_input", "tabbed_textboxes_tabs_output"]);
+  document.addEventListener('click', textbox_tabswitch.activate("tabbed_textboxes_tabs_input"));
+  document.addEventListener('click', textbox_tabswitch.activate("tabbed_textboxes_tabs_output"));
+  textbox_tabswitch.activate("tabbed_textboxes_tabs_input");
+
+  const options_tabswitch = new TabSwitch(["tabbed_options_tabs_options", "tabbed_options_tabs_templates"]);
+  document.addEventListener('click', options_tabswitch.activate("tabbed_options_tabs_options"));
+  document.addEventListener('click', options_tabswitch.activate("tabbed_options_tabs_templates"));
+  options_tabswitch.activate("tabbed_options_tabs_options");
+
+  const generation = document.getElementById("gen_button");
+  generation.addEventListener('click', function () {
+    if (window.screen.width <= 1440)
+      textbox_tabswitch.activate("tabbed_textboxes_tabs_output");
+    }
+  )
+
+  </script>
+  {% if user.userprofile.user_type == 1 %}
+    <!-- JavaScript for file upload/download -->
+    <!-- UPLOAD -->
+    <script type="text/javascript" src="{% static '/js/upload_files.js' %}"></script>
+    <!-- DOWNLOAD -->
+    <script type="text/javascript" src="{% static '/js/download_files.js' %}"></script>
+  {% endif %}
+  <!-- TRANSCRIPTION -->
+  <script type="text/javascript" src="{% static '/js/transcription.js' %}"></script>
+  <!-- Textbox Sync -->
+  <script>
+  let innertext = document.getElementsByName('input_text');
+  innertext[0].oninput = function () {
+    innertext[1].value = innertext[0].value;
+    console.log("Update on 0");
+  }
+  innertext[1].oninput = function () {
+    innertext[0].value = innertext[1].value;
+    console.log("Update on 1");
+  }
+  </script>
+  <!-- JavaScript for disabling/enabling sliders -->
+  <script>
+    $(document).ready(function() {
+      // Function to enable/disable sliders based on user type
+      function toggleSliders(enabled) {
+        $('#academic, #creative, #email_and_memo, #story_telling, #research_paper, #report, #resume, #bionic_reading').prop('disabled', !enabled);
+      }
+
+      // Check user type and toggle sliders initially
+      var userType = "{{ user.userprofile.user_type }}";
+      if (userType == 0) {
+        toggleSliders(false); // Disable sliders for user type 0
+      } else {
+        toggleSliders(true); // Enable sliders for other user types
+      }
+    });
+  </script>
+  {% if user.userprofile.user_type == 1 %}
+    <script>
+  // Syncs options between page sizes
+  window.onload = function() {
+    let small_option_form = document.getElementById("tablet_options_box").children[1].children[0];
+    let potential_switches = small_option_form.children[1].children;
+      for (i in potential_switches){
+        if ((potential_switches[i].className) && (potential_switches[i].className.includes("checkbox"))){
+      potential_switches[i].children[0].id = potential_switches[i].children[0].id + "_tablet";
+        }
+      }
+  };
+    </script>
+  {% else %}
+    <script>
+  // Syncs options between page sizes
+  window.onload = function() {
+    let small_option_form = document.getElementById("tablet_options_box").children[0];
+    let potential_switches = small_option_form.children[1].children;
+      for (i in potential_switches){
+        if ((potential_switches[i].className) && (potential_switches[i].className.includes("checkbox"))){
+      potential_switches[i].children[0].id = potential_switches[i].children[0].id + "_tablet";
+        }
+      }
+  };
+    </script>
+  {% endif %}
+  <script>
+  let options_button = document.getElementById("options_icon"); // options button
+  let options_box = document.getElementById("tablet_options_box");
+  let text_box = document.getElementById("tabbed_textboxes");
+  let open = false;
+  options_button.onclick = (event) => {
+    if (open){
+      open = false;
+      options_box.setAttribute("style", "");
+      text_box.setAttribute("style", "");
+    }
+    else{
+      open = true;
+      options_box.setAttribute("style", "display: flex");
+      text_box.setAttribute("style", "display: none");
+    }
+  }
+  onresize = (event) => {
+  if (open && (window.screen.width >= 550)){
+    open = false;
+    options_box.setAttribute("style", "");
+    text_box.setAttribute("style", "");
+  };
+  };
+  </script>
+{% endblock overcontent %}

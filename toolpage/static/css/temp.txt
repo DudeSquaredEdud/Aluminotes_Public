@@ -1,0 +1,144 @@
+-- BASE
+html
+body
+.footer
+.content-flex-container
+.image-content
+.image-content img
+.settings
+.settings .selected
+.settings .theme-card
+.settings .dropdown-button
+.settings .dropdown-button:focus
+.settings .dropdown-menu
+.settings .dropdown-menu .dropdown-item:hover,
+.settings .dropdown-menu .dropdown-item:focus
+.settings h2
+.settings .btn
+.logout
+#frm_logout
+.navbar-solid
+.nav-item
+.navbar
+.navbar img
+.navbar-nav
+.fa-arrow-right-to-bracket
+.fa-user-plus
+
+-- LANDING
+.titleText
+.visionText
+.left-align
+.right-align
+.center_button
+.center_button_right
+.homelogo
+.team-section
+.team-title
+.team-member img
+.team-member
+.pricing-container
+.card-container
+.card-container .col
+.pricing-container h2
+.icons-container
+.icons-container .row
+.icons-container .col
+.icons-container .size
+.pricing-title
+.pricing-subtitle
+.pricing
+.price
+.bloodbackground_box_shadow
+.bloodbackground_button
+ul.checkmark
+ul.checkmark li
+ul.checkmark li::before
+.about-title
+.about-style
+.about-top-block
+.about-top-block h2
+.about-top-block p
+.about-top-block hr
+
+-- THEME
+.galactic_blood
+.galactic_blood_legacy
+.h1
+.bloodbackground
+.bloodbackground_button_1
+.bloodbackground_button_3
+.bloodbackground_button_4
+
+
+-- SETTINGS/CRUD
+.settings-group
+.settings-group label
+.settings-group input[type="checkbox"]
+.theme-selection label
+.theme-selection .theme-card img
+.profile-button
+.template-list
+.template-list ol
+.template-list ol a
+.template-list-button
+.template-list-button:hover
+.template-detail
+.template-detail-buttons
+.template-detail .btn-outline-light
+.template-detail .btn-outline-light:hover
+.gradient-custom
+.login-style
+.forgot-style
+.login-text
+.alert-style
+.alert
+.signup-custom
+.signup-style
+.password-help
+.password-help li
+.account-details
+.form-text
+.reset-password-custom
+.reset-password-custom li
+.back-button
+.back-button i
+.modal-dialog
+.templates-detail .reset-password-custom
+.create-update-custom .reset-password-custom
+.templates-detail .checkbox
+.templates-detail .form-check-label
+.templates-detail .form-switch
+.templates-detail .custom-label
+.templates-detail .switch-margin
+.form-switch .form-check-input
+.form-switch .form-check-input:focus
+.form-switch .form-check-input:checked
+.templates-detail-title
+.templates-title
+.templates-create-title
+.template-back-button
+.template-detail-back-button
+.template-switch-align
+
+-- TOOLPAGE
+.option_box
+.options-form hr
+.options-form .text-style
+.options-form .checkbox
+.options-form .form-switch .form-check-input
+.options-form .form-switch .form-check-input:focus
+.options-form .form-switch .form-check-input:checked
+.input_text_box
+.input_text_box_free
+.output_text_box
+.output_text_box_free
+.fixed-top-left-aligned
+.no_outline_textarea
+.toolpage_main
+.settings_box
+.templates-button-container
+.edit-templates
+.generate-button
+.load-saved-button
+.templates-text-color

@@ -1,0 +1,161 @@
+
+.apptheme {
+    box-shadow: #3c122a;
+    background: rgb(5,84,85);
+    background:
+    linear-gradient(283deg, rgba(5,84,85,1) 0%, rgb(29, 69, 94) 31%, rgba(34,82,164,1) 71%, rgba(15,156,177,1) 100%),
+    linear-gradient(207deg, rgba(5,84,85,1) 0%, rgb(41, 94, 127) 31%, rgb(97, 98, 171) 71%, rgb(20, 131, 114) 100%);
+    background-blend-mode: difference;
+  }
+
+  .theme {
+      box-shadow: #3c122a;
+      background: rgb(255,181,146);
+      background-image:
+      linear-gradient(180deg,
+      hsl(347deg 28% 28%) 0%,
+      hsl(347deg 30% 28%) 21%,
+      hsl(348deg 32% 28%) 30%,
+      hsl(349deg 34% 29%) 39%,
+      hsl(350deg 37% 29%) 46%,
+      hsl(351deg 39% 29%) 54%,
+      hsl(352deg 40% 29%) 61%,
+      hsl(353deg 42% 29%) 69%,
+      hsl(354deg 44% 30%) 79%,
+      hsl(355deg 46% 30%) 100%),
+
+      linear-gradient(145deg,
+      hsl(353deg 48% 30%) 0%,
+      hsl(342deg 50% 28%) 4%,
+      hsl(331deg 48% 26%) 12%,
+      hsl(329deg 40% 26%) 35%,
+      hsl(338deg 30% 30%) 69%,
+      hsl(346deg 21% 32%) 83%,
+      hsl(349deg 21% 33%) 90%,
+      hsl(352deg 21% 33%) 95%,
+      hsl(358deg 21% 33%) 97%,
+      hsl(7deg 24% 33%) 99%,
+      hsl(15deg 26% 33%) 100%),
+
+      linear-gradient(95deg,
+      hsl(0deg 27% 34%) 0%,
+      hsl(360deg 29% 33%) 21%,
+      hsl(359deg 30% 33%) 30%,
+      hsl(359deg 32% 33%) 39%,
+      hsl(358deg 34% 32%) 46%,
+      hsl(357deg 37% 32%) 54%,
+      hsl(357deg 39% 31%) 61%,
+      hsl(356deg 41% 31%) 69%,
+      hsl(356deg 43% 30%) 79%,
+      hsl(355deg 46% 30%) 100%),
+
+      linear-gradient(266deg,
+      hsl(300deg 79% 49%) 0%,
+      hsl(315deg 84% 53%) 7%,
+      hsl(330deg 89% 56%) 21%,
+      hsl(345deg 95% 60%) 58%,
+      hsl(0deg 100% 63%) 100%),
+
+      linear-gradient(110deg,
+        hsl(300deg 74% 35%) 0%,
+        hsl(339deg 76% 30%) 54%,
+        hsl(19deg 80% 25%) 100%),
+
+       linear-gradient(
+      145deg,
+      hsl(300deg 74% 35%) 0%,
+      hsl(338deg 79% 28%) 44%,
+      hsl(338deg 79% 24%) 66%,
+      hsl(300deg 75% 22%) 100%
+    );
+      background-blend-mode:darken;
+    }
+
+  .h1 {
+      line-height: 20px;
+  }
+
+  .bloodbackground {
+      background-color: #00000009;
+      box-shadow: 0px 0px 5px #09002f40;
+      color:white;
+      backdrop-filter: brightness(230%)
+      contrast(170%)
+      saturate(75%)
+      hue-rotate(5deg);
+  }
+
+  .bloodbackground_button_1 {
+      background-color: #69323273;
+      color:white !important;
+      backdrop-filter:
+      brightness(160%)
+      contrast(250%)
+      saturate(125%)
+      hue-rotate(325deg);
+      padding: 20px;
+  }
+
+  .bloodbackground_button_1:hover, .bloodbackground_button_2:hover{
+      background-color: #2f171773;
+  }
+
+  .bloodbackground_button_3:hover, .bloodbackground_button_4:hover{
+      background-color: white;
+      color: black;
+      transition-duration: 0.3;
+      scale: 1.04;
+  }
+
+  .bloodbackground_button_2 {
+      background-color: #69323273;
+      color:antiquewhite;
+      backdrop-filter:
+      brightness(147%)
+      contrast(330%)
+      saturate(130%)
+      hue-rotate(340deg);
+      padding-top: 100px;
+      padding: 20px;
+  }
+
+  .bloodbackground_button_3 {
+      background-color: white;
+      color:black;
+      width: 120px;
+      margin-top: 126px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 50px;
+  }
+
+  .bloodbackground_button_4 {
+      background-color: white;
+      color:black;
+      width: 120px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 50px;
+  }
+
+.load-saved-button {
+    background-color: #5d64b248;
+    color: antiquewhite;
+    border-color: rgb(171, 160, 146);
+    border-width: 1px;
+}
+
+.edit-templates {
+    background-color: #5d64b248;
+    border-color: rgb(171, 160, 146);
+    border-width: 1px;
+}
+
+.middle-buttons {
+    width: 10%;
+}

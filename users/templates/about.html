@@ -1,0 +1,48 @@
+{% extends "landing_style.html" %}
+{% load static %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+    <div class="about-title">about</div>
+    <div class="about-style">
+        <div class="about-top-block">
+            <h2>welcome to aluminotes!</h2>
+            <p>
+                For students and professionals facing challenges in note-taking,
+                Aluminotes provides an AI-powered solution to enhance text organization
+                and lead to improvements in users' writings.
+                Unlike baseline AI tools like ChatGPT, our software offers personalized formatting options
+                with the ability to customize outputs to cater to user needs,
+                setting a new standard for efficiency and quality in digital writing.
+            </p>
+            <h2>designed with you in mind</h2>
+            <p>
+                Aluminotes was formed from the shared struggle of students
+                who experienced difficulties with writing and managing notes under
+                tight schedules, and an understanding for peers who find their own
+                writing assignments to be lacking. Aluminotes is made
+                to aid students and career professionals who desire improvements in their
+                notes, reports, articles, presentations, and more.
+            </p>
+            <h2>access and benefits</h2>
+            <p>
+                Aluminotes can be accessed immediately by any user with an account.
+                Users who purchase a subscription plan will experience Aluminotes with all additional
+                accessibility features, more feedback options, and access to community tools to
+                develop and share their own note-taking templates!
+            </p>
+            <h2>contact us</h2>
+            <div class="row mt-4">
+                <div class="col-md-2">
+                    <h3>
+                        <i class="fa-solid fa-envelope"> </i> Email Us
+                    </h3>
+                    <p>aluminotes@gmail.com</p>
+                </div>
+            </div>
+            <a class="btn bloodbackground_button_1 btn-lg center_button_right mb-5"
+               href="{% url 'terms' %}"
+               role="button">Terms & Conditions</a>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,170 @@
+{% extends "settings_crud_style.html" %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+    <div class="container-xl px-4 mt-4">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 ">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (first name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="name">First Name</label>
+                                    <input class="form-control"
+                                           id="id_first_name"
+                                           type="first_name"
+                                           name="first_name"
+                                           placeholder="First Name"
+                                           value="{{ user.first_name }}"
+                                           disabled>
+                                </div>
+                                <!-- Form Group (last name)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="name">Last Name</label>
+                                    <input class="form-control"
+                                           id="id_last_name"
+                                           type="last_name"
+                                           name="last_name"
+                                           placeholder="Last Name"
+                                           value="{{ user.last_name }}"
+                                           disabled>
+                                </div>
+                            </div>
+                            <!-- Form Group (email address)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="id_email">Email address</label>
+                                <input class="form-control"
+                                       id="id_email"
+                                       type="email"
+                                       name="email"
+                                       placeholder="Enter your email address"
+                                       value="{{ user.email }}"
+                                       disabled>
+                            </div>
+                            <!-- Form Group (email address)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="plans">User Plan</label>
+                                <input class="form-control"
+                                       id="id_plan"
+                                       type="user_type"
+                                       name="user_type"
+                                       value="{% if user.userprofile.user_type == 0 %} Free {% elif user.userprofile.user_type == 1 %} Premium {% endif %}"
+                                       disabled>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Additional Actions -->
+                <div class="card mb-4">
+                    <div class="card-header">Actions</div>
+                    <div class="card-body">
+                        <div class="row mobile_column">
+                            <div class="col-4 text-center p-1">
+                                {% if user.userprofile.user_type == 0 and not user.userprofile.stripe_customer_id %}
+                                    {% csrf_token %}
+                                    <button id="checkout-button" class="btn btn-secondary profile-button">
+                                        <i class="fa-regular fa-credit-card"></i> Upgrade to Premium
+                                    </button>
+                                {% elif user.userprofile.user_type == 0 %}
+                                    <form action="{% url 'user_profile:customer_portal' %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-secondary profile-button">
+                                            <i class="fa-regular fa-credit-card"></i> Upgrade to Premium
+                                        </button>
+                                    </form>
+                                {% elif user.userprofile.user_type == 1 %}
+                                    <form action="{% url 'user_profile:customer_portal' %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-secondary profile-button">
+                                            <i class="fa-solid fa-ban"></i> Cancel Subscription
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="col-4 text-center p-1">
+                                <a class="btn btn-secondary profile-button"
+                                   role="button"
+                                   data-toggle="modal"
+                                   data-target="#deleteAccountModal">
+                                    <i class="fa-solid fa-user-slash"></i> Delete Account
+                                </a>
+                            </div>
+                            <div class="col-4 text-center p-1">
+                                <a class="btn btn-secondary profile-button"
+                                   role="button"
+                                   href="{% url 'password_change' %}">
+                                    <i class="fa-solid fa-lock"></i> Change Password
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Account Modal -->
+    <div class="modal fade"
+         id="deleteAccountModal"
+         tabindex="-1"
+         aria-labelledby="deleteAccountModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Are you sure you want to delete your account?</h5>
+                </div>
+                <div class="modal-body">
+                    Deleting your account will remove all your information from our database. This cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form method="post"
+                          id="deleteAccountForm"
+                          action="{% url 'user_profile:delete_account' %}">
+                        {% csrf_token %}
+                        <button type="submit"
+                                name="action"
+                                value="confirm-delete"
+                                class="btn btn-danger">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript">
+    var stripe = Stripe('pk_test_51POSEVCwhdqZcwfyw74RFwzFgmBDYO6HrmQYhSwKgYroAul9wGyXnYVsZ8fiezUsS0qVHFI9SXRmC7rRizQ5Mvxf00zpKlCCt7');
+
+    document.getElementById('checkout-button').addEventListener('click', function () {
+        fetch("{% url 'user_profile:create_checkout_session' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+        })
+        .then(response => response.json())
+        .then(session => {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        })
+        .catch(function (error) {
+            console.error('Error:', error);
+        });
+    });
+    </script>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "settings_crud_style.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+    {{ title_text }}
+{% endblock title %}
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4">
+            <form method="post">
+                {% csrf_token %}
+                <p>Are you sure you want to delete "{{ object }}"?</p>
+                {{ form }}
+                <button type="submit" name="action" value="confirm" class="btn btn-danger">Confirm</button>
+                <button type="submit" name="action" value="go_back" class="btn btn-secondary">Go Back</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

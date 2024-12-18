@@ -1,0 +1,128 @@
+{% extends "settings_crud_style.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+    <div class="template-back-button row justify-content-center">
+        <a type="back"
+           class="back-button px-5"
+           role="button"
+           href="{% url 'SavedUserTemplates:list-templates' %}">
+            <i class="fa-solid fa-arrow-left-long"></i> Back
+        </a>
+    </div>
+    <div class="d-flex justify-content-center create-update-custom">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card reset-password-custom text-white mt-2 ">
+                    <div class="card-body p-5">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fw-bold mb-3 text-uppercase text-center templates-title">
+                                {% if template and template.name_of_template %}
+                                    {{ title_text }}
+                                {% else %}
+                                    {{ title_text }}
+                                {% endif %}
+                            </h2>
+                            <form method="post" enctype="multipart/form-data">
+                                <!-- If you're looking for something that is messing up the CSS on this page,
+                the previous line's class is probably it.  -->
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    {% if template and template.name_of_template %}
+                                        <input class="form-control"
+                                               id="name_of_template"
+                                               type="text"
+                                               name="name_of_template"
+                                               placeholder="{{ template.name_of_template }}">
+                                    {% else %}
+                                        <input class="form-control"
+                                               id="name_of_template"
+                                               type="text"
+                                               name="name_of_template"
+                                               placeholder="Template Name">
+                                    {% endif %}
+                                </div>
+                                <div class="template-switch-align">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="summary" name="summary">
+                                        <label class="form-check-label" for="summary">Summary</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="formal" name="formal">
+                                        <label class="form-check-label" for="formal">Formal</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="academic"
+                                               name="academic">
+                                        <label class="form-check-label" for="academic">Academic</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="creative"
+                                               name="creative">
+                                        <label class="form-check-label" for="creative">Creative</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="study_notes"
+                                               name="study_notes">
+                                        <label class="form-check-label" for="study_notes">Study Notes</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="meeting_notes"
+                                               name="meeting_notes">
+                                        <label class="form-check-label" for="meeting_notes">Meeting Notes</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="email_and_memo"
+                                               name="email_and_memo">
+                                        <label class="form-check-label" for="email_and_memo">Email and Memo</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="outline" name="outline">
+                                        <label class="form-check-label" for="outline">Outline</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="story_telling"
+                                               name="story_telling">
+                                        <label class="form-check-label" for="story_telling">Story Telling</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               id="research_paper"
+                                               name="research_paper">
+                                        <label class="form-check-label" for="research_paper">Research Paper</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="report" name="report">
+                                        <label class="form-check-label" for="report">Report</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="resume" name="resume">
+                                        <label class="form-check-label" for="resume">Resume</label>
+                                    </div>
+                                    {{ form.media }}
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button type="submit" class="btn btn-outline-light btn-lg px-5">{{ button_text }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

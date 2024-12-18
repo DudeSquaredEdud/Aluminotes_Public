@@ -1,0 +1,6 @@
+{% extends "settings_crud_style.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <p>Logged out!</p>
+    <a href="{% url 'login' %}">Click here to login again.</a>
+{% endblock content %}

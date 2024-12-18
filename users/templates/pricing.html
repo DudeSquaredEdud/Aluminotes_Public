@@ -1,0 +1,138 @@
+{% extends "landing_style.html" %}
+{% block content %}
+  <div class="pricing-container">
+    <h1 class="pricing-title">Effective Writing Begins With a Plan</h1>
+    <h1 class="pricing-subtitle">Reach new heights by writing without boundaries</h1>
+    <h2>All premium plans include:</h2>
+    <div class="icons-container">
+      <div class="row">
+        <div class="col">
+          <i class="fa-solid fa-align-left size"></i>
+          <br>
+          Summarizer
+        </div>
+        <div class="col">
+          <i class="fa-solid fa-indent size"></i>
+          <br>
+          Formatter
+        </div>
+        <div class="col">
+          <i class="fa-solid fa-volume-high size"></i>
+          <br>
+          Text to Speech
+        </div>
+        <div class="col">
+          <i class="fa-solid fa-microphone size"></i>
+          <br>
+          Speech Recognition
+        </div>
+        <div class="col">
+          <i class="fa-solid fa-eye size"></i>
+          <br>
+          Bionic Reading
+        </div>
+        <div class="col">
+          <i class="fa-solid fa-bookmark size"></i>
+          <br>
+          Templates
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="row mobile_column">
+      <div class="col px-lg-3">
+        <div class="bloodbackground_box_shadow">
+          <h1 class="pricing">Free</h1>
+          <p class="pricing">For individuals just getting started with aluminotes</p>
+          <p class="price">
+            $0<span>no credit card needed</span>
+          </p>
+          <hr>
+          <ul class="checkmark">
+            <li>Limited to 500 words of input text</li>
+            <li>Access to summarization tool</li>
+            <li>Limited to formal tone tool</li>
+            <li>Study notes, meeting notes, and outline formatting tool</li>
+            <li>Access to text-to-speech tool</li>
+            <li>Access to bionic reading tool</li>
+          </ul>
+          {% if user.is_authenticated %}
+            <a class="btn bloodbackground_button_3 btn-lg center_button_left"
+               href="{% url 'toolpage:toolpage_app' %}"
+               role="button">Start Now</a>
+          {% else %}
+            <a class="btn bloodbackground_button_3 btn-lg center_button_left"
+               href="{% url 'signup' %}"
+               role="button">Start Now</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col px-lg-3">
+        <div class="bloodbackground_box_shadow">
+          <h1 class="pricing">Premium</h1>
+          <p class="pricing">For users looking to amplify their productivity</p>
+          <p class="price">
+            $5<span>billed monthly</span>
+          </p>
+          <hr>
+          <ul class="checkmark">
+            <li>Unlimited input text size</li>
+            <li>Access to all summarization and formatting styles and tools</li>
+            <li>Access to text-to-speech tool</li>
+            <li>Access to speech-to-text tool</li>
+            <li>Access to bionic reading tool</li>
+            <li>Access to revision history</li>
+            <li>Ability to save preferences</li>
+            <li>Access to custom formatting settings</li>
+            <li>Access to custom organization settings</li>
+            <li>Access to community templates</li>
+          </ul>
+          {% if user.is_authenticated and user.userprofile.user_type == 0 and not user.userprofile.stripe_customer_id %}
+            {% csrf_token %}
+            <button id="checkout-button"
+                    class="btn bloodbackground_button_4 btn-lg center_button_left">Start Now</button>
+          {% elif user.userprofile.user_type == 0 or user.userprofile.user_type == 1 %}
+            <form action="{% url 'user_profile:customer_portal' %}" method="post">
+              {% csrf_token %}
+              <button type="submit"
+                      class="btn bloodbackground_button_4 btn-lg center_button_left">Start Now</button>
+            </form>
+          {% else %}
+            <a class="btn bloodbackground_button_4 btn-lg center_button_left"
+               href="{% url 'signup' %}"
+               role="button">Start Now</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript">
+  var stripe = Stripe('pk_test_51POSEVCwhdqZcwfyw74RFwzFgmBDYO6HrmQYhSwKgYroAul9wGyXnYVsZ8fiezUsS0qVHFI9SXRmC7rRizQ5Mvxf00zpKlCCt7');
+
+    document.getElementById('checkout-button').addEventListener('click', function () {
+        fetch("{% url 'user_profile:create_checkout_session' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+        })
+        .then(response => response.json())
+        .then(session => {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        })
+        .catch(function (error) {
+            console.error('Error:', error);
+        });
+    });
+  </script>
+{% endblock content %}

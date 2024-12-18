@@ -1,0 +1,31 @@
+{% extends "settings_crud_style.html" %}
+{% block content %}
+    <div class="template-detail-back-button row justify-content-center">
+        <a type="back"
+           class="back-button px-5"
+           role="button"
+           href="{% url 'SavedUserTemplates:list-templates' %}">
+            <i class="fa-solid fa-arrow-left-long"></i> Back
+        </a>
+    </div>
+    <div class="d-flex justify-content-center templates-detail">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card reset-password-custom delete_template_container text-white mt-2 ">
+                    <div class="card-body p-5 ">
+                        <div class="mt-md-4">
+                            <h2 class="fw-bold mb-5 text-uppercase text-center templates-title">Delete {{ object.name_of_template }}</h2>
+                            <form method="post">
+                                {% csrf_token %}
+                                <p class="text-center">Are you sure you want to delete "{{ object }}"?</p>
+                                <input type="submit"
+                                       value="Confirm"
+                                       class="btn btn-outline-light mt-md-5 btn-lg px-5">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

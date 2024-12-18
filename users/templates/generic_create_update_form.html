@@ -1,0 +1,23 @@
+{% extends "landing_style.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+    {{ title_text }}
+{% endblock title %}
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4">
+            <form method="post"
+                  enctype="multipart/form-data"
+                  class="form-slider-slipper">
+                <!-- If you're looking for something that is messing up the CSS on this page,
+                the previous line's class is probably it.  -->
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {{ form.media }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-light btn-lg px-5">{{ button_text }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

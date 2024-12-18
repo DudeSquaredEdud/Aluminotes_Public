@@ -1,0 +1,59 @@
+{% extends "settings_crud_style.html" %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+    <div class="template-list-back-button">
+        <a type="back"
+           class="back-button px-5"
+           role="button"
+           href="{% url 'toolpage:toolpage_app' %}">
+            <i class="fa-solid fa-arrow-left-long"></i> Back
+        </a>
+    </div>
+    <div class="">
+        <div class="card template-detail text-white">
+            <div class="card-body p-5 text-center">
+                <div class="mb-md-5 mt-md-4 pb-5">
+                    <h2 class="fw-bold mb-4 text-uppercase">Available Templates</h2>
+                    <div class="row template-list">
+                        {% if object_list %}
+                            <ol>
+                                {% for template in object_list %}
+                                    <li>
+                                        <a class=" btn template-list-button btn-lg"
+                                           href="{% url 'SavedUserTemplates:template-detail' template.id %}">
+                                            {{ template.name_of_template }}
+                                        </a>
+                                        {% comment %} {{ template.name_of_template }} {% endcomment %}
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {% else %}
+                            <p>No templates are available.</p>
+                        {% endif %}
+                    </div>
+                    <div class="row justify-content-center template-detail-buttons mt-3">
+                        <div class="">
+                            <div class="text-center">
+                                {% comment %} {% if user.is_authenticated and user.userprofile.is_teacher %}
+                                    <a class="btn btn-warning" href="{% url 'polls:create-question' %}">
+                                        <i class="fa-solid fa-plus"></i> Create Question
+                                    </a>
+                                {% endif %}
+                                {% if user.is_authenticated and user.userprofile.is_student %}
+                                    <a class="btn btn-warning disabled" href="{% url 'polls:create-question' %}" role="button" aria-disabled="true">
+                                        <i class="fa-solid fa-plus"></i> Create Question
+                                    </a>
+                                {% endif %} {% endcomment %}
+                                {% if user.is_authenticated %}
+                                    <a class="btn btn-outline-light btn-lg px-5"
+                                       href="{% url 'SavedUserTemplates:create-template' %}">Create Template</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

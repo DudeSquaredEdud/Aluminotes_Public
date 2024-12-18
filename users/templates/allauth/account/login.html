@@ -1,0 +1,87 @@
+{% extends "settings_crud_style.html" %}
+{% load django_bootstrap5 %}
+{% load socialaccount %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+    <section class="vh-90">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                {% if form.errors %}
+                    <div class="alert alert-warning alert-style" role="alert">Username or password incorrect.</div>
+                {% endif %}
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <div class="alert alert-warning alert-style" role="alert">
+                            Your account doesn't have access to this page. To proceed, please login with
+                            an account that has access.
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning alert-style" role="alert">Please login to see this page.</div>
+                    {% endif %}
+                {% endif %}
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card gradient-custom text-white">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <h2 class="fw-bold mb-4 text-uppercase">Login</h2>
+                                <form method="post" action="{% url 'login' %}">
+                                    {% csrf_token %}
+                                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                                        <input type="email"
+                                               id="typeEmailX"
+                                               name="username"
+                                               class="form-control form-control-lg"
+                                               placeholder="Email"
+                                               required />
+                                    </div>
+                                    <div data-mdb-input-init class="form-outline form-white mb-3">
+                                        <input type="password"
+                                               id="typePasswordX"
+                                               name="password"
+                                               class="form-control form-control-lg"
+                                               placeholder="Password"
+                                               required />
+                                    </div>
+                                    <p class="small mb-4 pb-lg-2 forgot-button forgot-style">
+                                        <a class="login-text fw-bold" href="{% url 'password_reset' %}">Forgot password?</a>
+                                    </p>
+                                    <div class="text-center">
+                                        <button data-mdb-button-init
+                                                data-mdb-ripple-init
+                                                class="btn btn-outline-light btn-lg px-5"
+                                                type="submit">Login</button>
+                                    </div>
+                                    <input type="hidden" name="next" value="{{ next }}" class="form-control" />
+                                </form>
+                                <p class="mt-3">
+                                    Don't have an account? <a href="{% url 'signup' %}" class="login-text fw-bold">Sign Up</a>
+                                </p>
+                                <a href="{% provider_login_url 'google' %}?next=/"
+                                   class="btn btn-outline-light btn-lg px-5">Login with Google</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+<!--
+    <div class="d-flex justify-content-center">
+
+        <div class="col-md-4">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <p>
+                    <a href="{% url 'password_reset' %}">Lost password?</a>
+                </p>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary justify-center">Login</button>
+                </div>
+                <input type="hidden" name="next" value="{{ next }}" class="form-control" />
+            </form>
+        </div>
+    </div>
+-->

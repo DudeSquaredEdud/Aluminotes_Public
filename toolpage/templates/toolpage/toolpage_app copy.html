@@ -1,0 +1,150 @@
+{% extends "toolpage/toolpage_style.html" %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet"
+        href="{% static 'css/toolpage.css' %}?{{ user.custom_user_settings.theme }}" />
+{% endblock style %}
+{% block body_start %}
+  <body class="apptheme"></body>
+{% endblock body_start %}
+{% block content %}
+  <!--page layout-->
+  <!--The option box-->
+  <div class="toolpage_main">
+    <div class="container option_container">
+      <form id="myForm"
+            action="."
+            method="post"
+            class="bloodbackground option_box">
+        {% csrf_token %}
+        {{ toolpage_template_form }}
+        <div>
+          <input type="hidden" id="form-data" name="form_data">
+        </div>
+      </form>
+    </div>
+    <!--The textboxes-->
+    <div class="container text_container">
+      <!--Input-->
+      {% if user.userprofile.user_type == 1 %}
+        <div class="container settings_container">
+          <div class="input_text_box">
+            <textarea class="bloodbackground input_text_box no_outline_textarea {{ user.custom_user_settings.theme }}_text"
+                      placeholder="write here"
+                      id="input_text"></textarea>
+          </div>
+        </div>
+        <div class="middle-buttons">
+          <div class="media-controls">
+            <div class="media-buttons">
+              <button class="play-button media-button" label="play">
+                <i class="fas fa-play button-icons delta"></i>
+                <span class="button-text milli"></span>
+              </button>
+              <!-- Add other media buttons as needed -->
+            </div>
+            <audio id="audio_player">
+              <source id="audio_source" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <button type="submit"
+                  value="Submit"
+                  class="fa-sharp fa-solid fa-arrows-rotate generate-button"
+                  id="gen_button"></button>
+          <div>
+            <a id="upload" class="upload-download">
+              <i class="fas fa-upload button-icons delta"></i></a>
+          </div>
+          <div>
+            <a id="download" class="upload-download">
+              <i class="fas fa-download button-icons delta"></i></a>
+          </div>
+          <div id="filenameModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Save Note</h2>
+              <p>Enter File Name:</p>
+              <input type="text" id="filenameInput">
+              <button id="saveFilename">Save</button>
+            </div>
+          </div>
+        </div>
+        <!--Output-->
+        <div class="output_text_box">
+          <p class="bloodbackground output_text_box" id="output_text"></p>
+        </div>
+      {% elif user.userprofile.user_type == 0 %}
+        <textarea class="bloodbackground input_text_box_free no_outline_textarea {{ user.custom_user_settings.theme }}_text"
+                  placeholder="write here"
+                  id="input_text"></textarea>
+        <div>
+          <div class="media-controls-free">
+            <div class="media-buttons">
+              <button class="play-button media-button" label="play">
+                <i class="fas fa-play button-icons delta"></i>
+                <span class="button-text milli"></span>
+              </button>
+              <!-- Add other media buttons as needed -->
+            </div>
+            <audio id="audio_player">
+              <source id="audio_source" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <button type="submit"
+                  value="Submit"
+                  class="fa-sharp fa-solid fa-arrows-rotate generate-button-free"
+                  id="gen_button"></button>
+        </div>
+        <!--Output-->
+        <p class="bloodbackground output_text_box_free {{ user.custom_user_settings.theme }}_text"
+           id="output_text"></p>
+      {% endif %}
+      {% if user.userprofile.user_type == 1 %}
+        <form id="savedForm"
+              action="."
+              method="post"
+              class="bloodbackground settings_box">
+          {{ saved_user_template_loader | safe }}
+          <input type="hidden" id="form-data" name="form_data">
+          <div class="templates-button-container">
+            <a id="template-button"
+               class="edit-templates"
+               href="{% url 'SavedUserTemplates:list-templates' %}">Templates</a>
+          </div>
+        </form>
+      </div>
+      <div class="alert_box alert_box_error" id="alert_box"></div>
+    </div>
+  {% endif %}
+  <!--javascript-->
+  <!-- ERRORS & ALERT -->
+  <script type="text/javascript" src="{% static '/js/alert_box.js' %}"></script>
+  <!--Rotate Generate Button on Click-->
+  <script type="text/javascript" src="{% static '/js/rotate_on_click.js' %}"></script>
+  <!--Submit without reload-->
+  <script type="text/javascript"
+          src="{% static '/js/submit_without_reload.js' %}"></script>
+  <!-- JavaScript for disabling/enabling sliders -->
+  <script type ="text/javascript" src="{% static '/js/slider_enable.js' %}"></script>
+  <!--Importing Gemini API-->
+  <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+  </script>
+  <!--Importing Markdown Converter-->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!--Gemini Generator-->
+  <script type="text/javascript" src="{% static '/js/gemini_generation.js' %}"></script>
+  <!-- JavaScript for text-to-speech -->
+  <script type="text/javascript" src="{% static '/js/text_to_speech.js' %}"></script>
+  <!-- JavaScript for file upload/download -->
+  <!-- UPLOAD -->
+  <script type="text/javascript" src="{% static '/js/upload_files.js' %}"></script>
+  <!-- DOWNLOAD -->
+  <script type="text/javascript" src="{% static '/js/download_files.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,147 @@
+{% extends "settings_crud_style.html" %}
+{% block title %}
+{% endblock title %}
+{% block content %}
+       <div class="template-detail-back-button row justify-content-center">
+              <a type="back"
+                 class="back-button px-5"
+                 role="button"
+                 href="{% url 'SavedUserTemplates:list-templates' %}">
+                     <i class="fa-solid fa-arrow-left-long"></i> Back
+              </a>
+       </div>
+       <div class="d-flex justify-content-center templates-detail">
+              <div class="row">
+                     <div class="col-md-4">
+                            <div class="card reset-password-custom text-white mt-2 ">
+                                   <div class="card-body p-5">
+                                          <div class="mb-md-5 mt-md-4 pb-5">
+                                                 <h2 class="fw-bold mb-5 text-uppercase text-center templates-title">{{ object.name_of_template }}</h2>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.summary %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">Summary</label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.formal %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">Formal</label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.academic %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">Academic</label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.creative %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">Creative</label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.study_notes %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">Study Notes</label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.meeting_notes %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">
+                                                               Meeting Notes
+                                                        </label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.email_and_memo %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">
+                                                               Email and Memo
+                                                        </label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.outline %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">Outline</label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.story_telling %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">
+                                                               Story Telling
+                                                        </label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.research_paper %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">
+                                                               Research Paper
+                                                        </label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.report %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label"
+                                                               for="flexSwitchCheckCheckedDisabled">Report</label>
+                                                 </div>
+                                                 <div class="switch-margin form-check form-switch">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="flexSwitchCheckCheckedDisabled"
+                                                               {% if object.resume %}checked disabled{% else %}disabled{% endif %}>
+                                                        <label class="form-check-label custom-label" for="flexSwitchCheckDefault">Resume</label>
+                                                 </div>
+                                                 <div class="text-center mt-4">
+                                                        <a class="btn btn-outline-light btn-lg px-5"
+                                                           href="{% url 'SavedUserTemplates:update-template' object.id %}">Edit</a>
+                                                        <a class="btn btn-outline-light btn-lg px-5"
+                                                           href="{% url 'SavedUserTemplates:delete-template' object.id %}">Delete</a>
+                                                 </div>
+                                          </div>
+                                   </div>
+                            </div>
+                     </div>
+              </div>
+       </div>
+{% endblock content %}

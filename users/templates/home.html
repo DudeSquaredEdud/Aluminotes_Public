@@ -1,0 +1,42 @@
+{% extends "landing_style.html" %}
+{% block overcontent %}
+    {% load static %}
+    <div class="container mobile-center">
+        <img src="{% static 'img/logoHome.png' %}"
+             alt="The aluminotes logo"
+             height="600px"
+             width="auto"
+             class="homelogo right-align">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="left-align rounded-3">
+            <div>
+                <h1 class="display-3 titleText fw-bold">reshape your notes</h1>
+                <p class="visionText">
+                    aluminotes is an AI-assisted text formatter, editor, and all-round improver, with options to help make your notes shine.
+                </p>
+                <p class="visionText mb-5">
+                    using advanced prompts and intensive ai knowledge, aluminotes can help you read, write, and format your ideas to improve clarity, conciseness, and aesthetic.
+                </p>
+                <p class="col-md-8 fs-4">
+                    <div class="center_button">
+                        <a class="btn bloodbackground_button_1 btn-lg left-align"
+                           href="{% url 'toolpage:toolpage_app' %}"
+                           id="try_aluminotes"
+                           role="button">try aluminotes</a>
+                        {% if not request.user.is_authenticated %}
+                            <a class="btn bloodbackground_button_1 btn-lg center_button_right"
+                               style="min-width:100px;
+                                      margin-left:10px"
+                               href="{% url 'login' %}"
+                               role="button">log in</a>
+                            <a class="btn bloodbackground_button_1 btn-lg center_button_right"
+                               id="home_signup_button"
+                               href="{% url 'signup' %}"
+                               role="button">sign up</a>
+                        {% endif %}
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock overcontent %}

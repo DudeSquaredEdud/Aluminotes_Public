@@ -1,0 +1,49 @@
+<div class="options-form">
+    {% for field in form %}
+        {% if field.label == "Summary" %}
+            <div class="text-style">
+                <strong>Summarize</strong>
+                <br>
+                <i>Summarize your notes</i>
+                <br>
+            </div>
+        {% endif %}
+        {% if field.label == "Formal" %}
+            <hr>
+            <div class="text-style">
+                <strong>Tone</strong>
+                <br>
+                <i>Change the tone</i>
+                <br>
+            </div>
+        {% endif %}
+        {% if field.label == "Study notes" %}
+            <hr>
+            <div class="text-style">
+                <strong>Format</strong>
+                <br>
+                <i>Change the formatting</i>
+                <br>
+            </div>
+        {% endif %}
+        {% if field.label == "Bionic reading" %}
+            <hr>
+            <div class="text-style">
+                <strong>Accessibility</strong>
+                <br>
+                <i>Change display settings</i>
+                <br>
+            </div>
+        {% endif %}
+        <div class="form-check form-switch checkbox">
+            <input class="form-check-input"
+                   type="checkbox"
+                   role="switch"
+                   id="{{ field.name }}"
+                   name="{{ field.name }}"
+                   onclick="syncOptions()"
+                   {% if field.value == True %}checked{% endif %}>
+            <label class="form-check-label" for="flexSwitchCheckChecked">{{ field.label }}</label>
+        </div>
+    {% endfor %}
+</div>

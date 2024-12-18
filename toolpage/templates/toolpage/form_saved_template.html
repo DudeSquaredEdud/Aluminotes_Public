@@ -1,0 +1,22 @@
+<div class="options-form">
+    <div class="text-style">
+        <strong>Saved Templates</strong>
+        <br>
+        <hr>
+    </div>
+    {% if user_templates %}
+        {% csrf_token %}
+        {% for saved_user_template in user_templates %}
+            <div class="form-check form-switch checkbox">
+                <input class="form-check-input saved_user_template_slider"
+                       type="radio"
+                       id="{{ saved_user_template.name_of_template }}"
+                       name="saved_user_template"
+                       value="{{ saved_user_template.summary }} {{ saved_user_template.formal }} {{ saved_user_template.academic }} {{ saved_user_template.creative }} {{ saved_user_template.study_notes }} {{ saved_user_template.meeting_notes }} {{ saved_user_template.email_and_memo }} {{ saved_user_template.outline }} {{ saved_user_template.story_telling }} {{ saved_user_template.research_paper }} {{ saved_user_template.report }} {{ saved_user_template.resume }}">
+                <label class="form-check-label" for="flexSwitchCheckChecked">{{ saved_user_template.name_of_template }}</label>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No saved user templates yet.</p>
+    {% endif %}
+</div>

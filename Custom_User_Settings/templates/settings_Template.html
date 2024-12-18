@@ -1,0 +1,155 @@
+{% extends "settings_crud_style.html" %}
+{% load static %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="settings">
+                <h2>Settings</h2>
+                <hr>
+                <form id="settings-form" method="post">
+                    {% csrf_token %}
+                    <div class="settings-group mb-3">
+                        <label for="dark-mode-toggle" class="form-label">Dark Mode</label>
+                        <div class="dropdown">
+                            <button class="btn dropdown-button dropdown-toggle"
+                                    type="button"
+                                    id="dropdownMenuDarkMode"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                {% if dark_mode %}
+                                    On
+                                {% else %}
+                                    Off
+                                {% endif %}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuDarkMode">
+                                <li>
+                                    <a class="dropdown-item" href="#" data-value="on">On</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" data-value="off">Off</a>
+                                </li>
+                            </ul>
+                            <input type="hidden"
+                                   id="dark-mode-toggle"
+                                   name="darkMode"
+                                   value="{% if dark_mode %}on{% else %}off{% endif %}">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="settings-group mb-3">
+                        <label for="dark-mode-toggle" class="form-label">Retain Last Used Options</label>
+                        <div class="dropdown">
+                            <button class="btn dropdown-button dropdown-toggle"
+                                    type="button"
+                                    id="retain_last_used_options-toggle"
+                                    name="retainLastUsedOptions"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                {% if retain_last_used_options %}
+                                    On
+                                {% else %}
+                                    Off
+                                {% endif %}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuDarkMode">
+                                <li>
+                                    <a class="dropdown-item" href="#" data-value="on">On</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" data-value="off">Off</a>
+                                </li>
+                            </ul>
+                            <input type="hidden"
+                                   id="dark-mode-toggle"
+                                   name="retainLastUsedOptions"
+                                   value="{% if retain_last_used_options %}on{% else %}off{% endif %}">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="theme-selection mb-4">
+                        <label for="theme">Theme</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="theme-card {% if theme == "galactic_blood" %}selected{% endif %}"
+                                     data-theme="galactic_blood"
+                                     name="galacticBlood">
+                                    <img src="{% static 'img/galacticblood.PNG' %}"
+                                         class="img-fluid"
+                                         height="auto"
+                                         width="auto"
+                                         alt="Theme 1">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="theme-card {% if theme == "pink" %}selected{% endif %}"
+                                     data-theme="pink"
+                                     name="Pink">
+                                    <img src="{% static 'img/pink.PNG' %}"
+                                         class="img-fluid"
+                                         height="auto"
+                                         width="auto"
+                                         alt="Theme 2">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="theme-card {% if theme == "void" %}selected{% endif %}"
+                                     data-theme="void"
+                                     name="Void">
+                                    <img src="{% static 'img/void.PNG' %}"
+                                         class="img-fluid"
+                                         height="auto"
+                                         width="auto"
+                                         alt="Theme 3">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="theme" name="theme">
+                    </div>
+                    <hr>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Save Settings</button>
+                </form>
+            </div>
+        </div>
+        <div class="alert_box alert_box_success" id="alert_box"></div>
+    </div>
+    <!-- ERRORS & ALERT -->
+    <script type="text/javascript" src="{% static '/js/alert_box.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+$(document).ready(function() {
+    $('.theme-card').on('click', function() {
+        $('.theme-card').removeClass('selected');
+        $(this).addClass('selected');
+        var theme = $(this).data('theme');
+        $('#theme').val(theme);
+    });
+
+    $('#settings-form').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '',  // Use the same URL
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                // Handle success, e.g., show a success message
+                console.log('Settings saved:', response);
+                AlertBox.show("Saved Successfully")
+            }
+        });
+    });
+
+    // Custom dropdown handling
+    $('.dropdown-menu a').on('click', function() {
+        var selectedValue = $(this).data('value');
+        var parentDropdown = $(this).closest('.dropdown');
+        var hiddenInput = parentDropdown.find('input[type="hidden"]');
+        var dropdownToggle = parentDropdown.find('.dropdown-toggle');
+
+        hiddenInput.val(selectedValue);
+        dropdownToggle.text($(this).text());
+    });
+});
+    </script>
+{% endblock content %}
