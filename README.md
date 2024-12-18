@@ -1,5 +1,7 @@
 # Aluminotes
 
+_Note: This is the public repository. All API keys have been removed. However, due to the nature of github, contribution mappings were not able to be adequately transferred._
+
 For students and career-professionals facing challenges in note-taking and prose, Aluminotes provides an AI-driven solution to streamline text organization and note-taking, and lead to improvements in users' writings. Unlike base AI tools such as ChatGPT, our software offers personalized formatting options with the ability to further customize output expectations to further cater to user needs, setting a new standard for efficiency and quality in content creation.
 
 
