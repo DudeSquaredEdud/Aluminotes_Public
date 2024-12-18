@@ -1,14 +1,3 @@
-# HEROKU STAGING
-
-Hi, this is past Ashton an hour or so after setting up the staging website. This is the heroku-staging branch.
-
-Heroku automatically updates from this branch, so only push to it after testing changes on main.
-
-Later on, when we're more set up, we can merge this branch into heroku-deploy after testing safe changes. We might even delete this branch to save money.
-
-We got this!
--Ashton
-
 # Aluminotes
 
 For students and career-professionals facing challenges in note-taking and prose, Aluminotes provides an AI-driven solution to streamline text organization and note-taking, and lead to improvements in users' writings. Unlike base AI tools such as ChatGPT, our software offers personalized formatting options with the ability to further customize output expectations to further cater to user needs, setting a new standard for efficiency and quality in content creation.
